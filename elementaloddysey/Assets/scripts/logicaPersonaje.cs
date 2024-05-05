@@ -6,7 +6,7 @@ public class logicaPersonaje : MonoBehaviour {
 	//movimiennto
 	private float velocidadMov = 5.0f;
 	private float velocidadRot = 200.0f;
-	private Animator anim;
+	public Animator anim;
 	public float x, y;
 	//salto
 	public Rigidbody rb;
@@ -45,7 +45,7 @@ public class logicaPersonaje : MonoBehaviour {
 		x = Input.GetAxis ("Horizontal");
 		y = Input.GetAxis ("Vertical");
 
-		if (Input.GetKeyDown (KeyCode.Mouse0) && puedoSaltar && !estoyAtacando && (anim.GetFloat("VelY")==0f)) {
+		if (Input.GetKeyDown (KeyCode.Mouse1) && puedoSaltar && !estoyAtacando && (anim.GetFloat("VelY")==0f)) {
 			anim.SetTrigger ("golpeo");
 			estoyAtacando = true;
 		} else {

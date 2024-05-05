@@ -16,7 +16,9 @@ public class logicaSalto : MonoBehaviour {
 	}
 
 	private void OnTriggerStay(Collider other){
-		lp.puedoSaltar = true;
+		if(other.tag == "piso"){
+			lp.puedoSaltar = true;
+		}
 	}
 
 	private void OnTriggerExit(Collider other){
