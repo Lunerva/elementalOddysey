@@ -51,10 +51,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\scripts\logicaCalidadImagen.cs" />
+     <Compile Include="Assets\scripts\logicaCambiarNivel.cs" />
+     <Compile Include="Assets\scripts\logicafullscreen.cs" />
      <Compile Include="Assets\scripts\logicaNPC.cs" />
      <Compile Include="Assets\scripts\logicaObjetivoEsferas.cs" />
      <Compile Include="Assets\scripts\logicaPersonaje.cs" />
      <Compile Include="Assets\scripts\logicaSalto.cs" />
+     <Compile Include="Assets\scripts\logicaVolumen.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2017.2.0f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

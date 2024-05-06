@@ -1,11 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\logicaObjetivoEsferas.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\logicafullscreen.cs">
     <Files>
-      <File FileName="Assets\scripts\logicaPersonaje.cs" Line="27" Column="35" />
-      <File FileName="Assets\scripts\logicaSalto.cs" Line="19" Column="27" />
-      <File FileName="Assets\scripts\logicaObjetivoEsferas.cs" Line="19" Column="33" />
-      <File FileName="Assets\scripts\logicaNPC.cs" Line="22" Column="8" />
+      <File FileName="Assets\scripts\logicaCambiarNivel.cs" Line="8" Column="2" />
+      <File FileName="Assets\scripts\logicaVolumen.cs" Line="23" Column="3" />
+      <File FileName="Assets\scripts\logicafullscreen.cs" Line="57" Column="52" />
+      <File FileName="Assets\scripts\logicaCalidadImagen.cs" Line="16" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
