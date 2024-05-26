@@ -5,60 +5,64 @@ using UnityEngine.UI;
 
 public class logicafullscreen : MonoBehaviour {
 
-	public Toggle toggle;
+    // Declaración de variables públicas
+    public Toggle toggle; // Referencia al componente Toggle que controla la pantalla completa
+    public Dropdown resDropdown; // Referencia al componente Dropdown que muestra las opciones de resolución
+    Resolution[] resoluciones; // Array para almacenar las resoluciones disponibles
 
-	public Dropdown resDropdown;
-	Resolution[] resoluciones;
+    // Método que se llama al iniciar el script
+    void Start () {
+        // Verifica si la pantalla está en modo de pantalla completa y actualiza el estado del Toggle
+        if (Screen.fullScreen) {
+            toggle.isOn = true;
+        } else {
+            toggle.isOn = false;
+        }
 
-	// Use this for initialization
-	void Start () {
-		if (Screen.fullScreen) {
-			toggle.isOn = true;
+        // Llama al método para configurar las opciones de resolución
+        revisarRes ();
+    }
+    
+    // Método público para activar o desactivar el modo de pantalla completa
+    public void activarFullscreen(bool pantallaCompleta){
+        Screen.fullScreen = pantallaCompleta;
+    }
 
-		} else {
-			toggle.isOn = false;
-		}
+    // Método para revisar y configurar las opciones de resolución
+    public void revisarRes(){
+        // Obtiene todas las resoluciones disponibles
+        resoluciones = Screen.resolutions;
+        resDropdown.ClearOptions (); // Borra todas las opciones del Dropdown
+        List<string> opciones = new List<string> ();
+        int resActual = 0;
 
-		revisarRes ();
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        // Recorre todas las resoluciones disponibles
+        for(int i=0; i<resoluciones.Length; i++){
+            // Crea una cadena de texto con el formato "Ancho x Alto" para cada resolución
+            string opcion = resoluciones [i].width + " x " + resoluciones [i].height;
+            opciones.Add (opcion); // Agrega la opción al listado
 
-	public void activarFullscreen(bool pantallaCompleta){
-		Screen.fullScreen = pantallaCompleta;
-	}
+            // Verifica si la resolución actual coincide con la resolución de la pantalla
+            if(Screen.fullScreen && resoluciones[i].width == Screen.currentResolution.width && resoluciones[i].height == Screen.currentResolution.height){
+                resActual = i; // Almacena el índice de la resolución actual
+            }
+        }
 
-	public void revisarRes(){
-		resoluciones = Screen.resolutions;
-		resDropdown.ClearOptions ();
-		List<string> opciones = new List<string> ();
-		int resActual = 0;
+        resDropdown.AddOptions (opciones); // Agrega todas las opciones al Dropdown
+        resDropdown.value = resActual; // Establece el valor del Dropdown con la resolución actual
+        resDropdown.RefreshShownValue (); // Actualiza el Dropdown para mostrar la resolución actual
 
-		for(int i=0;i<resoluciones.Length;i++){
-			string opcion = resoluciones [i].width + " x " + resoluciones [i].height;
-			opciones.Add (opcion);
+        // Recupera la resolución seleccionada anteriormente (si la hay) desde PlayerPrefs
+        resDropdown.value = PlayerPrefs.GetInt ("numeroRes", 0);
+    }
 
-			if(Screen.fullScreen && resoluciones[i].width == Screen.currentResolution.width && resoluciones[i].height == Screen.currentResolution.height){
-				resActual = i;
-			}
-		}
-		resDropdown.AddOptions (opciones);
-		resDropdown.value = resActual;
-		resDropdown.RefreshShownValue ();
-
-		resDropdown.value = PlayerPrefs.GetInt ("numeroRes",0);
-	}
-
-	public void cambiarRes(int indiceRes){
-		PlayerPrefs.SetInt ("numeroRes",resDropdown.value);
-		Resolution res = resoluciones [indiceRes];
-		Screen.SetResolution (res.width, res.height, Screen.fullScreen);
-
-	}
-
-
+    // Método para cambiar la resolución de la pantalla
+    public void cambiarRes(int indiceRes){
+        // Guarda la resolución seleccionada en PlayerPrefs
+        PlayerPrefs.SetInt ("numeroRes", resDropdown.value);
+        // Obtiene la resolución seleccionada del array de resoluciones
+        Resolution res = resoluciones [indiceRes];
+        // Establece la resolución de la pantalla
+        Screen.SetResolution (res.width, res.height, Screen.fullScreen);
+    }
 }
